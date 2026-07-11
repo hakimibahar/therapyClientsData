@@ -1,0 +1,187 @@
+@font-face {
+  font-family: "IRANSansX";
+  src: url("../fonts/IRANSansX-Thin.woff2") format("woff2");
+  font-weight: 100;
+}
+
+@font-face {
+  font-family: "IRANSansX";
+  src: url("../fonts/IRANSansX-UltraLight.woff2") format("woff2");
+  font-weight: 200;
+}
+
+@font-face {
+  font-family: "IRANSansX";
+  src: url("../fonts/IRANSansX-Light.woff2") format("woff2");
+  font-weight: 300;
+}
+
+@font-face {
+  font-family: "IRANSansX";
+  src: url("../fonts/IRANSansX-Regular.woff2") format("woff2");
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: "IRANSansX";
+  src: url("../fonts/IRANSansX-Medium.woff2") format("woff2");
+  font-weight: 500;
+}
+
+@font-face {
+  font-family: "IRANSansX";
+  src: url("../fonts/IRANSansX-DemiBold.woff2") format("woff2");
+  font-weight: 600;
+}
+
+@font-face {
+  font-family: "IRANSansX";
+  src: url("../fonts/IRANSansX-Bold.woff2") format("woff2");
+  font-weight: 700;
+}
+
+@font-face {
+  font-family: "IRANSansX";
+  src: url("../fonts/IRANSansX-ExtraBold.woff2") format("woff2");
+  font-weight: 800;
+}
+
+@font-face {
+  font-family: "IRANSansX";
+  src: url("../fonts/IRANSansX-Black.woff2") format("woff2");
+  font-weight: 900;
+}
+
+.ss02 {
+  -moz-font-feature-settings: "ss02";
+  -webkit-font-feature-settings: "ss02";
+  font-feature-settings: "ss02";
+}
+
+body * {
+  -moz-font-feature-settings: "ss02";
+  -webkit-font-feature-settings: "ss02";
+  font-feature-settings: "ss02";
+  font-family: "IRANSansX", sans-serif;
+}
+
+
+body {
+  background: #f6f7f9;
+  font-family: "IRANSansX", sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+/* .bg-logo {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-image: url("../assets/logo.png");
+  background-repeat: no-repeat;
+  background-size: 400px;
+  opacity: 0.02;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+} */
+
+.form-container {
+  max-width: 900px;
+  margin: 30px auto;
+  background: #fff;
+  padding: 25px;
+  border-radius: 12px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+  position: relative;
+  z-index: 2;
+  font-family: "IRANSansX", sans-serif;
+}
+
+h2 {
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.section-title {
+  margin-top: 25px;
+  font-weight: bold;
+  /* border-bottom: 1px solid #ddd; */
+  padding-bottom: 15px;
+}
+
+.small-note {
+  font-size: 13px;
+  color: #666;
+}
+
+/* Signature canvas */
+canvas {
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  width: 100%;
+  height: 180px;
+}
+
+/* Improve RTL spacing a bit */
+label {
+  margin-bottom: 6px;
+}
+
+.loading-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(255,255,255,.8);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
+
+.loading-overlay.hidden {
+    display: none;
+}
+
+.loader {
+    width: 48px;
+    height: 48px;
+    border: 5px solid #ddd;
+    border-top-color: #2563eb;
+    border-radius: 50%;
+    animation: spin .8s linear infinite;
+    margin-bottom: 16px;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+#submitBtn:disabled {
+    opacity: .6;
+    cursor: not-allowed;
+}
+
+.container-notification {
+  font-family: "IRANSansX", sans-serif;
+  position: fixed;
+  top: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 12px 16px;
+  border-radius: 8px;
+  color: #ffffff;
+  font-size: 16px;
+  line-height: 1.4;
+  z-index: 9999;
+  min-width: 200px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  backdrop-filter: blur(6px);
+}
