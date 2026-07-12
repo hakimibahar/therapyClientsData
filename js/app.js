@@ -3,6 +3,7 @@ window.addEventListener("DOMContentLoaded", () => {
     const WEB_APP_URL = CONFIG.WEB_APP_URL;
 
     document.getElementById("version").textContent = CONFIG.VERSION;
+    var replacedElements = [];
 
     // Collect all form data
     function getFormData() {
@@ -184,18 +185,17 @@ window.addEventListener("DOMContentLoaded", () => {
             // main convert command
             await html2pdf().set(opt).from(element).save();
             
-            // after converting
-
-            changeBackInputsToNormall()
-
+            // after converting 
+            
             document.body.classList.remove("pdf-mode");
-
             pdfName.style.display = "none";
+
 
         } catch (err) {
             showNotification(" خطا در دانلود pdf", "error");
             console.error(err);
         } finally {
+            changeBackInputsToNormall();
             hideLoading();
         }
 
@@ -207,32 +207,51 @@ window.addEventListener("DOMContentLoaded", () => {
 
     function changeAllInputsToText() {
 
-        document.querySelectorAll("input, textarea").forEach(el => {
-            const span = document.createElement("div");
+        replacedElements = [];
+        document.querySelectorAll("input, textarea, select").forEach(el => {
 
-            span.className = "pdf-value";
+            // Don't replace hidden inputs
+            if (el.type === "hidden") return;
 
-            span.textContent = el.value;
+            const p = document.createElement("p");
 
-            span.style.border = "1px solid #ccc";
-            span.style.padding = "8px";
-            span.style.minHeight = "38px";
-            span.style.whiteSpace = "pre-wrap";
+            p.className = `pdf-value ${el.className}`;
 
-            el.dataset.originalDisplay = el.style.display;
+            // Preserve line breaks from textareas
+            p.style.whiteSpace = "pre-wrap";
+
+            p.style.margin = "0";
+            p.style.padding = "8px 12px";
+            p.style.minHeight = "30px";
+
+            p.style.border = "1px solid #ddd";
+            p.style.borderRadius = "6px";
+
+            p.style.direction = "rtl";
+            p.style.textAlign = "right";
+            p.style.fontSize = "0.9rem";
+
+            p.textContent = el.value || "";
+
+            // Remember what we replaced
+            replacedElements.push({
+                original: el,
+                replacement: p
+            });
 
             el.style.display = "none";
-
-            el.after(span);
+            el.parentNode.insertBefore(p, el.nextSibling);
 
         });
     }
-    function changeBackInputsToNormall() {
-        document.querySelectorAll(".pdf-value").forEach(el => el.remove());
 
-        document.querySelectorAll("input, textarea").forEach(el => {
-            el.style.display = el.dataset.originalDisplay || "";
+    function changeBackInputsToNormall() {
+        replacedElements.forEach(item => {
+            item.replacement.remove();
+            item.original.style.display = "";
         });
+
+        replacedElements = [];
     }
 
 
