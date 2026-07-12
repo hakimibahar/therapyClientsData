@@ -63,6 +63,8 @@ body * {
   -webkit-font-feature-settings: "ss02";
   font-feature-settings: "ss02";
   font-family: "IRANSansX", sans-serif;
+  direction: rtl;
+  text-align: right;
 }
 
 
@@ -72,21 +74,6 @@ body {
   margin: 0;
   padding: 0;
 }
-
-/* .bg-logo {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background-image: url("../assets/logo.png");
-  background-repeat: no-repeat;
-  background-size: 400px;
-  opacity: 0.02;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-  z-index: 0;
-} */
 
 .form-container {
   max-width: 900px;
@@ -103,6 +90,7 @@ body {
 h2 {
   text-align: center;
   margin-bottom: 10px;
+  font-size: 1.75rem;
 }
 
 .section-title {
@@ -184,4 +172,32 @@ label {
   align-items: center;
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
   backdrop-filter: blur(6px);
+}
+
+.mb-3 {
+  margin-bottom: 0.8rem !important;
+}
+
+.form-control {
+  padding: .25rem .75rem;
+}
+
+.pdf-mode .form-container {
+    padding: 15px 25px !important;
+}
+
+.pdf-mode .form-container button {
+  display: none;
+}
+
+#pdfPatientName {
+  display: none;
+  margin-top: 10px;
+  font-weight: bold;
+  margin-right: 15px;
+}
+
+.pdf-mode .form-container #pdfPatientName {
+  display: block;
+  margin-top: -22px;
 }

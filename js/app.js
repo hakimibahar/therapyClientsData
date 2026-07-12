@@ -73,6 +73,7 @@ window.addEventListener("DOMContentLoaded", () => {
     // expose functions to HTML
     window.clearSignature = clearSignature;
     window.submitForm = submitForm;
+    window.downloadPDF = downloadPDF;
     
     jalaliDatepicker.startWatch({
         separator: "/"
@@ -122,6 +123,116 @@ window.addEventListener("DOMContentLoaded", () => {
         } finally {
             hideLoading();
         }
+    }
+
+    async function downloadPDF() {
+
+        const data = getFormData();
+        if (!validateForm(data)) return;
+
+        showLoading();
+
+        try {
+
+            const element = document.querySelector(".form-container");
+            const fullName = document.getElementById("fullName").value.trim() || "";
+            const date = document.getElementById("visitDate").value.replace(/\//g, "-");
+
+            const opt = {
+                margin: [0.1, 0.1, 0.1, 0.1],
+                filename: `فرم توافق نامه درمانی - ${fullName} - ${date}.pdf`,
+                image: {
+                    type: "jpeg",
+                    quality: 1
+                },
+                html2canvas: {
+                    scale: 2,
+                    useCORS: true,
+                    allowTaint: true,
+                    logging: true
+                },
+                jsPDF: {
+                    unit: "in",
+                    format: "a4",
+                    orientation: "portrait"
+                },
+                pagebreak: {
+                    mode: ['avoid-all', 'css', 'legacy']
+                }
+            };
+
+
+            // before converting
+
+            document.querySelectorAll("input").forEach(input => {
+                input.value = toPersianDigits(input.value);
+            });
+            
+            document.querySelectorAll("span").forEach(span => {
+                span.textContent = toPersianDigits(span.textContent);
+            });
+
+            document.body.classList.add("pdf-mode");
+
+            const pdfName = document.getElementById("pdfPatientName");
+            pdfName.textContent = document.getElementById("fullName").value;
+            pdfName.style.display = "block";
+
+            changeAllInputsToText()
+
+            // main command for converting to pdf 
+            // main convert command
+            await html2pdf().set(opt).from(element).save();
+            
+            // after converting
+
+            changeBackInputsToNormall()
+
+            document.body.classList.remove("pdf-mode");
+
+            pdfName.style.display = "none";
+
+        } catch (err) {
+            showNotification(" خطا در دانلود pdf", "error");
+            console.error(err);
+        } finally {
+            hideLoading();
+        }
+
+    }
+    
+    function toPersianDigits(str) {
+        return str.replace(/\d/g, d => "۰۱۲۳۴۵۶۷۸۹"[d]);
+    }
+
+    function changeAllInputsToText() {
+
+        document.querySelectorAll("input, textarea").forEach(el => {
+            const span = document.createElement("div");
+
+            span.className = "pdf-value";
+
+            span.textContent = el.value;
+
+            span.style.border = "1px solid #ccc";
+            span.style.padding = "8px";
+            span.style.minHeight = "38px";
+            span.style.whiteSpace = "pre-wrap";
+
+            el.dataset.originalDisplay = el.style.display;
+
+            el.style.display = "none";
+
+            el.after(span);
+
+        });
+    }
+    function changeBackInputsToNormall() {
+        document.querySelectorAll(".pdf-value").forEach(el => el.remove());
+
+        document.querySelectorAll("input, textarea").forEach(el => {
+            el.style.display = el.dataset.originalDisplay || "";
+        });
     }
 
 

@@ -17,6 +17,12 @@
   <!-- Signature Pad -->
   <script src="https://cdn.jsdelivr.net/npm/signature_pad@4.0.0/dist/signature_pad.umd.min.js"></script>
 
+  <!-- html to pdf -->
+  <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script> -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.min.js"></script>
+
   <script src="js/config.js"></script>
   <script src="js/notifications.js"></script>
   <script src="js/jalaali.min.js"></script>
@@ -27,12 +33,6 @@
 </head>
 
 <body>
-
-<div class="bg-logo">
-    <div class="text-center mb-3">
-    <!-- <img src="assets/logo.png" class="main-logo" alt="logo"> -->
-    </div>
-</div>
 
 <div class="form-container">
 
@@ -249,7 +249,7 @@
   <div class="section-title">محرمانگی</div>
 
   <p class="small-note">
-    اطلاعات فقط در چارچوب درمان محرمانه است و جز در موارد قانونی خطر جدی برای خود یا دیگران افشا نمی شود/
+    اطلاعات فقط در چارچوب درمان محرمانه است و جز در موارد قانونی خطر جدی برای خود یا دیگران افشا نمی شود.
   </p>
   
   <!-- SIGNATURE -->
@@ -259,6 +259,7 @@
       با امضا مراجع تایید می‌کند که موارد بالا را خوانده و پذیرفته است.
     </p>
     <canvas id="signaturePad"></canvas>
+    <div id="pdfPatientName"></div>
     <button type="button" class="btn btn-secondary btn-sm mt-2" onclick="clearSignature()">
       پاک کردن امضا
     </button>
@@ -269,6 +270,10 @@
     <button class="btn btn-primary px-5" id="submitBtn" onclick="submitForm()">
       ثبت فرم
     </button>
+    <button class="btn btn-primary px-5" id="downloadPdfBtn" onclick="downloadPDF()">
+      دانلود PDF
+    </button>
+</div>
   </div>
 
   <div id="loadingOverlay" class="loading-overlay hidden">

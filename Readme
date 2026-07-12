@@ -1,0 +1,9 @@
+one page form that collects therpay data and put into google sheet
++ user will download the form after its inserted and can send it to thier therapiest
+
+
+usefull commands:
+
+# for running server locally
+-- python -m http.server 8000
+# open http://localhost:8000/ after run this command
