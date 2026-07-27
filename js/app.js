@@ -3,11 +3,10 @@ window.addEventListener("DOMContentLoaded", () => {
     const WEB_APP_URL = CONFIG.WEB_APP_URL;
 
     document.getElementById("version").textContent = CONFIG.VERSION;
-    var replacedElements = [];
 
     // Collect all form data
     function getFormData() {
-        console.log((document.getElementById("visitDate").value || "").replaceAll("/", "."));
+        
         return {
             visitDate: (document.getElementById("visitDate").value || "").replaceAll("/", "."),
             fullName: document.getElementById("fullName").value,
@@ -73,8 +72,8 @@ window.addEventListener("DOMContentLoaded", () => {
     
     // expose functions to HTML
     window.clearSignature = clearSignature;
-    window.submitForm = submitForm;
-    window.downloadPDF = downloadPDF;
+    window.submitForm = submitPdfInDriveDownload;
+    // window.downloadPDF = downloadPDF;
     
     jalaliDatepicker.startWatch({
         separator: "/"
@@ -92,31 +91,93 @@ window.addEventListener("DOMContentLoaded", () => {
         document.getElementById("submitBtn").disabled = false;
     }
 
+    
     // Submit
-    async function submitForm() {
+    async function submitPdfInDriveDownload() {
+
         const data = getFormData();
         if (!validateForm(data)) return;
         showLoading();
 
-        const formData = new FormData();
-        formData.append("data", JSON.stringify(data));
+        const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) || (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
 
-        if (!validateForm(data)) return;
+        const element = document.querySelector(".form-container");
+        const fullName = document.getElementById("fullName").value.trim() || "";
+        const date = document.getElementById("visitDate").value.replace(/\//g, "-");
+
+        const opt = {
+            margin: [0.1, 0.1, 0.1, 0.1],
+            filename: `فرم توافق نامه درمانی - ${fullName} - ${date}.pdf`,
+            image: {
+                type: "jpeg",
+                quality: 1
+            },
+            html2canvas: {
+                scale: isIOS ? 1 : 2,
+                useCORS: true,
+                allowTaint: true,
+                logging: true
+            },
+            jsPDF: {
+                unit: "in",
+                format: "a4",
+                orientation: "portrait"
+            },
+            pagebreak: {
+                mode: ['avoid-all', 'css', 'legacy']
+            }
+        };
+
+        // before converting
+
+        document.querySelectorAll("input").forEach(input => {
+            input.value = toPersianDigits(input.value);
+        });
+        
+        document.querySelectorAll("span").forEach(span => {
+            span.textContent = toPersianDigits(span.textContent);
+        });
+
+        document.body.classList.add("pdf-mode");
+
+        const pdfName = document.getElementById("pdfPatientName");
+        pdfName.textContent = document.getElementById("fullName").value;
+        pdfName.style.display = "block";
+
+        changeAllInputsToText()
+
+        // main command for converting to pdf 
+        // main convert command
+        const worker = html2pdf().set(opt).from(element);
+        const pdf = await worker.toPdf().get("pdf");
+
+        const blob = pdf.output("blob");
+        const base64 = await blobToBase64(blob);
 
         try {
-            const response = await fetch(WEB_APP_URL, {
-                method: "POST",
-                body: formData,
-                keepalive: true
+            const formData = new FormData();
+
+            formData.append("filename", opt.filename);
+            formData.append("pdf", base64);
+
+            const response = await fetch(WEB_APP_URL,{
+                method:"POST",
+                body:formData
             });
 
             const result = await response.json();
 
             if (result.success) {
-                showNotification(" فرم با موفقیت ثبت شد.", "success", true);
+                window.location.href = result.url;
+                showNotification(" فرم با موفقیت آپلود شد.", "success", true);
             } else {
                 showNotification("خطا ثبت فرم", "error");
             }
+
+            // after converting
+            changeBackInputsToNormall()
+            document.body.classList.remove("pdf-mode");
+            pdfName.style.display = "none";
 
         } catch (err) {
             showNotification(" خطا اتصال", "error");
@@ -124,6 +185,17 @@ window.addEventListener("DOMContentLoaded", () => {
         } finally {
             hideLoading();
         }
+    }
+
+    async function blobToBase64(blob){
+        return new Promise((resolve)=>{
+            const reader = new FileReader();
+            reader.onloadend = ()=>{
+                resolve(reader.result.split(",")[1]);
+            };
+            reader.readAsDataURL(blob);
+        });
+
     }
 
     async function downloadPDF() {
@@ -134,6 +206,7 @@ window.addEventListener("DOMContentLoaded", () => {
         showLoading();
 
         try {
+            const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) || (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
 
             const element = document.querySelector(".form-container");
             const fullName = document.getElementById("fullName").value.trim() || "";
@@ -147,7 +220,7 @@ window.addEventListener("DOMContentLoaded", () => {
                     quality: 1
                 },
                 html2canvas: {
-                    scale: 2,
+                    scale: isIOS ? 1 : 2,
                     useCORS: true,
                     allowTaint: true,
                     logging: true
@@ -183,19 +256,29 @@ window.addEventListener("DOMContentLoaded", () => {
 
             // main command for converting to pdf 
             // main convert command
-            await html2pdf().set(opt).from(element).save();
+            const worker = html2pdf().set(opt).from(element);
+            const pdf = await worker.toPdf().get("pdf");
+            console.log(pdf.getNumberOfPages());
+            const blob = pdf.output("blob");
+
+
+            if (isIOS) {
+                const url = URL.createObjectURL(blob);
+                const newWindow = window.open(url);
+                setTimeout(() => URL.revokeObjectURL(url), 60000);
+            } else {
+                pdf.save(opt.filename);
+            }
             
-            // after converting 
-            
+            // after converting
+            changeBackInputsToNormall()
             document.body.classList.remove("pdf-mode");
             pdfName.style.display = "none";
-
 
         } catch (err) {
             showNotification(" خطا در دانلود pdf", "error");
             console.error(err);
         } finally {
-            changeBackInputsToNormall();
             hideLoading();
         }
 
@@ -207,51 +290,32 @@ window.addEventListener("DOMContentLoaded", () => {
 
     function changeAllInputsToText() {
 
-        replacedElements = [];
-        document.querySelectorAll("input, textarea, select").forEach(el => {
+        document.querySelectorAll("input, textarea").forEach(el => {
+            const span = document.createElement("div");
 
-            // Don't replace hidden inputs
-            if (el.type === "hidden") return;
+            span.className = "pdf-value";
 
-            const p = document.createElement("p");
+            span.textContent = el.value;
 
-            p.className = `pdf-value ${el.className}`;
+            span.style.border = "1px solid #ccc";
+            span.style.padding = "8px";
+            span.style.minHeight = "38px";
+            span.style.whiteSpace = "pre-wrap";
 
-            // Preserve line breaks from textareas
-            p.style.whiteSpace = "pre-wrap";
-
-            p.style.margin = "0";
-            p.style.padding = "8px 12px";
-            p.style.minHeight = "30px";
-
-            p.style.border = "1px solid #ddd";
-            p.style.borderRadius = "6px";
-
-            p.style.direction = "rtl";
-            p.style.textAlign = "right";
-            p.style.fontSize = "0.9rem";
-
-            p.textContent = el.value || "";
-
-            // Remember what we replaced
-            replacedElements.push({
-                original: el,
-                replacement: p
-            });
+            el.dataset.originalDisplay = el.style.display;
 
             el.style.display = "none";
-            el.parentNode.insertBefore(p, el.nextSibling);
+
+            el.after(span);
 
         });
     }
-
     function changeBackInputsToNormall() {
-        replacedElements.forEach(item => {
-            item.replacement.remove();
-            item.original.style.display = "";
-        });
+        document.querySelectorAll(".pdf-value").forEach(el => el.remove());
 
-        replacedElements = [];
+        document.querySelectorAll("input, textarea").forEach(el => {
+            el.style.display = el.dataset.originalDisplay || "";
+        });
     }
 
 

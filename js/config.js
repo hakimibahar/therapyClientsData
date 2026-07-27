@@ -1,6 +1,6 @@
 
 // config.js
 const CONFIG = {
-    WEB_APP_URL: "https://script.google.com/macros/s/AKfycbyArz6L0FDeRjgbn_z0jk5WrlNiQ8m3Tgz2OLo0Jb2SbjH1WA8ULCzNL6EohMHqM_OSxg/exec",
-    VERSION: "1.5"
+    WEB_APP_URL: "https://script.google.com/macros/s/AKfycbx5i1Pz7kZocYNncHv8r1pJZsKpz6FIqCEyRvJyRnNubrkKsF0bpTmF8Ihp2ctmX0z2/exec",
+    VERSION: "1.6"
 };
