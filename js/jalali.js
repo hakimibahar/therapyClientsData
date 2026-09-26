@@ -8,5 +8,15 @@ function toGregorian(jy, jm, jd) {
 }
 
 function getTodayJalali() {
-    return toJalaliDate(new Date());
+    return toJalaliDate(new Date()).replace(/\./g, "/");;
+}
+
+function getJalaliDateYearsAgo(years) {
+    const today = getTodayJalali().replace(/\./g, "/");
+
+    const [year, month, day] = today.split("/");
+
+    const date = `${parseInt(year) - years}/${month}/${day}`;
+
+    return date;
 }

@@ -1,131 +1,184 @@
+/* =========================================================
+   IRANSansX FONT
+   ========================================================= */
+
 @font-face {
-  font-family: "IRANSansX";
-  src: url("../fonts/IRANSansX-Thin.woff2") format("woff2");
-  font-weight: 100;
+    font-family: "IRANSansX";
+    src: url("../fonts/IRANSansX-Thin.woff2") format("woff2");
+    font-weight: 100;
 }
 
 @font-face {
-  font-family: "IRANSansX";
-  src: url("../fonts/IRANSansX-UltraLight.woff2") format("woff2");
-  font-weight: 200;
+    font-family: "IRANSansX";
+    src: url("../fonts/IRANSansX-UltraLight.woff2") format("woff2");
+    font-weight: 200;
 }
 
 @font-face {
-  font-family: "IRANSansX";
-  src: url("../fonts/IRANSansX-Light.woff2") format("woff2");
-  font-weight: 300;
+    font-family: "IRANSansX";
+    src: url("../fonts/IRANSansX-Light.woff2") format("woff2");
+    font-weight: 300;
 }
 
 @font-face {
-  font-family: "IRANSansX";
-  src: url("../fonts/IRANSansX-Regular.woff2") format("woff2");
-  font-weight: 400;
+    font-family: "IRANSansX";
+    src: url("../fonts/IRANSansX-Regular.woff2") format("woff2");
+    font-weight: 400;
 }
 
 @font-face {
-  font-family: "IRANSansX";
-  src: url("../fonts/IRANSansX-Medium.woff2") format("woff2");
-  font-weight: 500;
+    font-family: "IRANSansX";
+    src: url("../fonts/IRANSansX-Medium.woff2") format("woff2");
+    font-weight: 500;
 }
 
 @font-face {
-  font-family: "IRANSansX";
-  src: url("../fonts/IRANSansX-DemiBold.woff2") format("woff2");
-  font-weight: 600;
+    font-family: "IRANSansX";
+    src: url("../fonts/IRANSansX-DemiBold.woff2") format("woff2");
+    font-weight: 600;
 }
 
 @font-face {
-  font-family: "IRANSansX";
-  src: url("../fonts/IRANSansX-Bold.woff2") format("woff2");
-  font-weight: 700;
+    font-family: "IRANSansX";
+    src: url("../fonts/IRANSansX-Bold.woff2") format("woff2");
+    font-weight: 700;
 }
 
 @font-face {
-  font-family: "IRANSansX";
-  src: url("../fonts/IRANSansX-ExtraBold.woff2") format("woff2");
-  font-weight: 800;
+    font-family: "IRANSansX";
+    src: url("../fonts/IRANSansX-ExtraBold.woff2") format("woff2");
+    font-weight: 800;
 }
 
 @font-face {
-  font-family: "IRANSansX";
-  src: url("../fonts/IRANSansX-Black.woff2") format("woff2");
-  font-weight: 900;
+    font-family: "IRANSansX";
+    src: url("../fonts/IRANSansX-Black.woff2") format("woff2");
+    font-weight: 900;
 }
+
+
+/* =========================================================
+   FONT FEATURES / GLOBAL RTL
+   ========================================================= */
 
 .ss02 {
-  -moz-font-feature-settings: "ss02";
-  -webkit-font-feature-settings: "ss02";
-  font-feature-settings: "ss02";
+    -moz-font-feature-settings: "ss02";
+    -webkit-font-feature-settings: "ss02";
+    font-feature-settings: "ss02";
 }
 
-body * {
-  -moz-font-feature-settings: "ss02";
-  -webkit-font-feature-settings: "ss02";
-  font-feature-settings: "ss02";
-  font-family: "IRANSansX", sans-serif;
-  direction: rtl;
-  text-align: right;
+body *,
+textarea {
+    -moz-font-feature-settings: "ss02";
+    -webkit-font-feature-settings: "ss02";
+    font-feature-settings: "ss02";
+
+    font-family: "IRANSansX", sans-serif;
+
+    direction: rtl;
+    text-align: right;
 }
 
+
+/* =========================================================
+   BODY
+   ========================================================= */
 
 body {
-  background: #f6f7f9;
-  font-family: "IRANSansX", sans-serif;
-  margin: 0;
-  padding: 0;
+    background: #f6f7f9;
+    font-family: "IRANSansX", sans-serif;
+    margin: 0;
+    padding: 0;
 }
+
+
+/* =========================================================
+   MAIN FORM
+   ========================================================= */
 
 .form-container {
-  max-width: 900px;
-  margin: 30px auto;
-  background: #fff;
-  padding: 25px;
-  border-radius: 12px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
-  position: relative;
-  z-index: 2;
-  font-family: "IRANSansX", sans-serif;
+    max-width: 900px;
+    margin: 30px auto;
+    background: #fff;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+    position: relative;
+    z-index: 2;
+    font-family: "IRANSansX", sans-serif;
 }
 
+
+/* =========================================================
+   HEADINGS
+   ========================================================= */
+
 h2 {
-  text-align: center;
-  margin-bottom: 10px;
-  font-size: 1.75rem;
+    text-align: center;
+    margin-bottom: 10px;
+    font-size: 1.5rem;
 }
 
 .section-title {
-  margin-top: 25px;
-  font-weight: bold;
-  /* border-bottom: 1px solid #ddd; */
-  padding-bottom: 15px;
+    margin-top: 15px;
+    font-weight: bold;
+    padding-bottom: 15px;
 }
 
 .small-note {
-  font-size: 13px;
-  color: #666;
+    font-size: 13px;
+    color: #3b3b3b;
 }
 
-/* Signature canvas */
-canvas {
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  width: 100%;
-  height: 180px;
-}
 
-/* Improve RTL spacing a bit */
+/* =========================================================
+   FORM ELEMENTS
+   ========================================================= */
+
 label {
-  margin-bottom: 6px;
+    margin-bottom: 6px;
 }
+
+.form-control {
+  padding: .25rem .75rem;
+}
+
+
+/* =========================================================
+   SIGNATURE
+   ========================================================= */
+
+canvas {
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    width: 100%;
+    height: 180px;
+}
+
+
+/* =========================================================
+   BOOTSTRAP SPACING OVERRIDE
+   ========================================================= */
+
+.mb-3 {
+    margin-bottom: 0.8rem !important;
+}
+
+
+/* =========================================================
+   LOADING
+   ========================================================= */
 
 .loading-overlay {
     position: fixed;
     inset: 0;
-    background: rgba(255,255,255,.8);
+    background: rgba(255, 255, 255, .8);
+
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+
     z-index: 9999;
 }
 
@@ -136,9 +189,11 @@ label {
 .loader {
     width: 48px;
     height: 48px;
+
     border: 5px solid #ddd;
     border-top-color: #2563eb;
     border-radius: 50%;
+
     animation: spin .8s linear infinite;
     margin-bottom: 16px;
 }
@@ -149,55 +204,466 @@ label {
     }
 }
 
+
+/* =========================================================
+   SUBMIT BUTTON
+   ========================================================= */
+
 #submitBtn:disabled {
     opacity: .6;
     cursor: not-allowed;
 }
 
+
+/* =========================================================
+   NOTIFICATIONS
+   ========================================================= */
+
 .container-notification {
-  font-family: "IRANSansX", sans-serif;
-  position: fixed;
-  top: 30px;
-  left: 50%;
-  transform: translateX(-50%);
-  padding: 12px 16px;
-  border-radius: 8px;
-  color: #ffffff;
-  font-size: 16px;
-  line-height: 1.4;
-  z-index: 9999;
-  min-width: 200px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
-  backdrop-filter: blur(6px);
+    font-family: "IRANSansX", sans-serif;
+
+    position: fixed;
+    top: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+
+    padding: 12px 16px;
+    border-radius: 8px;
+
+    color: #ffffff;
+    font-size: 16px;
+    line-height: 1.4;
+
+    z-index: 9999;
+
+    min-width: 200px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+
+    backdrop-filter: blur(6px);
 }
 
-.mb-3 {
-  margin-bottom: 0.8rem !important;
+
+/* =========================================================
+   FAMILY TABLE - NORMAL PAGE
+   ========================================================= */
+
+.family-table {
+    width: 100%;
+    min-width: 750px;
+    overflow-x: auto;
 }
 
-.form-control {
-  padding: .25rem .75rem;
+.family-table th {
+    text-align: center;
+    vertical-align: middle;
+    white-space: nowrap;
 }
+
+.family-table td {
+    vertical-align: middle;
+}
+
+.family-table input {
+    min-width: 100px;
+}
+
+.family-table .family-age {
+    min-width: 70px;
+    width: 80px;
+}
+
+.family-table td:last-child {
+    width: 60px;
+    min-width: 60px;
+}
+
+.family-table thead th {
+    background-color: #f8f9fa;
+    font-weight: 600;
+}
+
+.family-table td,
+.family-table th {
+    padding: 8px;
+}
+
+.family-table .form-control {
+  font-size: 14px !important;
+}
+
+
+/* =========================================================
+   AGREEMENT
+   ========================================================= */
+
+.agreement-field {
+    font-weight: 700;
+}
+
+.agreement-text ol {
+  list-style-type: " * ";
+}
+
+
+/* =========================================================
+   PDF MODE
+   ========================================================= */
+
+/*
+   Everything below this point is only used while
+   .pdf-mode is active.
+*/
+
+.pdf-mode .pdf-section {
+    break-inside: avoid !important;
+    page-break-inside: avoid !important;
+}
+
+/* ---------------------------------------------------------
+   Main PDF container
+   --------------------------------------------------------- */
 
 .pdf-mode .form-container {
     padding: 15px 25px !important;
+    direction: rtl !important;
+    text-align: right !important;
+    font-family: "IRANSansX", sans-serif !important;
+}
+
+
+/* ---------------------------------------------------------
+   Global PDF RTL
+   --------------------------------------------------------- */
+
+.pdf-mode,
+.pdf-mode * {
+    direction: rtl !important;
+    font-family: "IRANSansX", sans-serif !important;
+}
+
+.pdf-mode {
+    text-align: right !important;
+}
+
+
+/* ---------------------------------------------------------
+   PDF headings
+   --------------------------------------------------------- */
+
+.pdf-mode h1,
+.pdf-mode h2,
+.pdf-mode h3,
+.pdf-mode h4,
+.pdf-mode h5,
+.pdf-mode h6 {
+    direction: rtl !important;
+    text-align: right !important;
+}
+
+
+/* Keep h2 centered */
+.pdf-mode h2 {
+    text-align: center !important;
+}
+
+/* =========================================================
+   PDF FORM FIELDS
+========================================================= */
+
+.pdf-mode .pdf-field {
+    display: block !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+    min-height: 30px !important;
+    margin: 0 !important;
+    padding: 5px 10px !important;
+    font-family: "IRANSansX", sans-serif !important;
+    font-size: 1rem !important;
+    font-weight: 400 !important;
+    line-height: 1.6 !important;
+    color: #212529 !important;
+    background: #fff !important;
+    border: 1px solid #ced4da !important;
+    border-radius: .375rem !important;
+    direction: rtl !important;
+    text-align: right !important;
+    white-space: pre-wrap !important;
+    overflow-wrap: anywhere !important;
+    word-break: break-word !important;
+}
+
+.pdf-mode .family-table .pdf-field {
+    min-height: 30px !important;
+    padding: 5px 8px !important;
+    border-radius: 4px !important;
+    line-height: 1.5 !important;
+    white-space: pre-wrap !important;
+    overflow-wrap: anywhere !important;
+    word-break: break-word !important;
+}
+
+/* ---------------------------------------------------------
+   PDF section titles
+   --------------------------------------------------------- */
+
+.pdf-mode .section-title {
+    direction: rtl !important;
+    text-align: right !important;
+}
+
+
+/* ---------------------------------------------------------
+   PDF form-control appearance
+   --------------------------------------------------------- */
+
+.pdf-mode .form-control {
+    border-radius: 12px !important;
+    background: #fff !important;
+    border: 1px solid #dee2e6 !important;
+    padding: .25rem .75rem !important;
+}
+
+
+/* =========================================================
+   PDF VALUE
+   ========================================================= */
+
+.pdf-mode .pdf-value.empty {
+    height: auto !important;
+}
+
+.pdf-mode label {
+    font-weight: 500;
+    direction: rtl !important;
+    text-align: right !important;
+}
+
+
+.pdf-mode .family-table {
+    width: 100% !important;
+    min-width: 0 !important;
+    border-collapse: collapse !important;
+    border: 1px solid #dee2e6 !important;
+    direction: rtl !important;
+    font-family: "IRANSansX", sans-serif !important;
+}
+
+.pdf-mode .family-table th,
+.pdf-mode .family-table td {
+    border: 1px solid #dee2e6 !important;
+    padding: 8px !important;
+    vertical-align: middle !important;
+    text-align: right !important;
+    direction: rtl !important;
+    font-family: "IRANSansX", sans-serif !important;
+}
+
+.pdf-mode .family-table th {
+    font-weight: 600 !important;
+    background-color: #f8f9fa !important;
+    color: #212529 !important;
+    white-space: nowrap;
+}
+
+.pdf-mode .family-table td {
+    color: #212529 !important;
+}
+
+.pdf-mode .family-table textarea.pdf-table-field {
+    width: 100% !important;
+    min-height: 32px !important;
+    height: auto !important;
+    box-sizing: border-box !important;
+    padding: 5px 8px !important;
+    line-height: 1.5 !important;
+    white-space: pre-wrap !important;
+    overflow-wrap: anywhere !important;
+    word-break: break-word !important;
+    overflow: hidden !important;
+    resize: none !important;
+    direction: rtl !important;
+    text-align: right !important;
+}
+
+.pdf-mode .family-table .family-age {
+    width: 80px !important;
+    min-width: 70px !important;
+}
+
+
+.pdf-mode .family-table th:last-child,
+.pdf-mode .family-table td:last-child {
+    display: none !important;
+}
+
+.pdf-mode .table-responsive {
+    overflow: visible !important;
+    width: 100% !important;
 }
 
 .pdf-mode .form-container button {
-  display: none;
+    display: none !important;
+}
+
+.pdf-mode .agreement-text ol {
+    list-style: none !important;
+    padding-right: 0 !important;
+    padding-left: 0 !important;
+}
+
+.pdf-mode .agreement-text ol li {
+    position: relative;
+    padding-right: 25px !important;
+}
+
+.pdf-mode .agreement-text ol li::before {
+    content: "*" !important;
+    position: absolute;
+    right: 5px;
+    top: 0;
+    font-weight: bold;
+}
+
+.pdf-mode ul {
+    padding-right: 25px !important;
+    padding-left: 0 !important;
+    list-style-position: outside;
+}
+
+.pdf-mode li {
+    direction: rtl !important;
+    text-align: right !important;
+    font-family: "IRANSansX", sans-serif !important;
+    margin-bottom: 4px;
 }
 
 #pdfPatientName {
-  display: none;
-  margin-top: 10px;
-  font-weight: bold;
-  margin-right: 15px;
+    display: none;
+    margin-top: 10px;
+    margin-right: 15px;
+    font-weight: bold;
 }
 
 .pdf-mode .form-container #pdfPatientName {
-  display: block;
-  margin-top: -22px;
+    display: block;
+    margin-top: -22px;
+}
+
+.pdf-mode .agreement-field {
+    font-weight: 700 !important;
+}
+
+.pdf-mode .row {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    margin-left: -0.75rem !important;
+    margin-right: -0.75rem !important;
+}
+.pdf-mode .row {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    margin-left: -0.75rem !important;
+    margin-right: -0.75rem !important;
+}
+
+.pdf-mode .col-12 {
+    width: 100% !important;
+}
+
+.pdf-mode .col-6 {
+    width: 50% !important;
+}
+
+.pdf-mode .col-4 {
+    width: 33.333333% !important;
+}
+
+.pdf-mode .col-3 {
+    width: 25% !important;
+}
+
+.pdf-mode .col-md-12 {
+    width: 100% !important;
+}
+
+.pdf-mode .col-md-6 {
+    width: 50% !important;
+}
+
+.pdf-mode .col-md-4 {
+    width: 33.333333% !important;
+}
+
+.pdf-mode .col-md-3 {
+    width: 25% !important;
+}
+
+.pdf-mode [class*="col-"] {
+    position: relative;
+    padding-left: 0.75rem !important;
+    padding-right: 0.75rem !important;
+    box-sizing: border-box;
+}
+
+.pdf-mode .mb-3 {
+    margin-bottom: 0.8rem !important;
+}
+
+.pdf-mode .mt-2 {
+    margin-top: 0.5rem !important;
+}
+
+.pdf-mode .mt-3 {
+    margin-top: 1rem !important;
+}
+
+.pdf-mode .mb-2 {
+    margin-bottom: 0.5rem !important;
+}
+
+.pdf-mode .text-muted {
+    color: #6c757d !important;
+}
+
+.pdf-mode .text-dark {
+    color: #212529 !important;
+}
+
+.pdf-mode .bg-light {
+    background-color: #f8f9fa !important;
+}
+
+.pdf-mode .section-title {
+    break-after: avoid;
+    page-break-after: avoid;
+}
+
+.pdf-mode table {
+    break-inside: avoid;
+    page-break-inside: avoid;
+}
+
+.pdf-mode tr {
+    break-inside: avoid;
+    page-break-inside: avoid;
+}
+
+.pdf-mode .no-pdf {
+    display: none !important;
+}
+
+/* Debug */
+
+
+.debug-show {
+    display: none !important;
+}
+
+.debug-mode .debug-show {
+    display: flex !important;
 }

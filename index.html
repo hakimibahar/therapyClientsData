@@ -29,6 +29,7 @@
   <script src="js/jalali.js"></script>
   <script src="js/signature.js"></script>
   <script src="js/app.js"></script>
+  <script src="js/test.js"></script>
 
 </head>
 
@@ -47,240 +48,407 @@
     نسخه <span id="version"></span>
   </p>
 
-  <!-- DATE -->
-  <div class="mb-3">
-    <label class="form-label">تاریخ مراجعه</label>
-    <input type="text" class="form-control" id="visitDate" data-jdp placeholder="1405/04/14">
-  </div>
-
   <!-- BASIC INFO -->
-  <div class="section-title">اطلاعات پایه</div>
+  <section class="pdf-section">
 
-  <div class="mb-3">
-    <label class="form-label">نام و نام خانوادگی</label>
-    <input type="text" class="form-control" id="fullName">
-  </div>
+    <div class="section-title">اطلاعات پایه</div>
 
-  <div class="row">
-    <div class="col-md-4 mb-3">
-      <label class="form-label">سن</label>
-      <input type="number" class="form-control" id="age">
+    <div class="row">
+      
+      <div class="col-md-4 mb-3">
+        <label class="form-label">شماره پرونده</label>
+        <input type="number" class="form-control" id="caseNumber" placeholder="">
+      </div>
+
+      <div class="col-md-4 mb-3">
+        <label class="form-label">تاریخ مراجعه</label>
+        <input type="text" class="form-control" id="visitDate" data-jdp placeholder="1405/04/14">
+      </div>
+      
+      <div class="col-md-4 mb-3">
+        <label class="form-label">کدملی</label>
+        <input type="number" class="form-control" id="nationalCode">
+      </div>
+
     </div>
 
-    <div class="col-md-4 mb-3">
-      <label class="form-label">شغل</label>
-      <input type="text" class="form-control" id="job">
+    <div class="row">
+      
+      <div class="col-md-4 mb-3">
+        <label class="form-label">نام و نام خانوادگی</label>
+        <input type="text" class="form-control" id="fullName">
+      </div>
+
+      <div class="col-md-4 mb-3">
+        <label class="form-label">تاریخ تولد</label>
+        <input type="text" class="form-control" id="birthDate" data-jdp placeholder="1375/04/14">
+      </div>
+
+      <div class="col-md-4 mb-3">
+        <label class="form-label">سن</label>
+        <input type="number" class="form-control" id="age">
+      </div>
+
+    </div>
+    
+    <div class="row">
+
+      <div class="col-md-4 mb-3">
+        <label class="form-label">محل تولد</label>
+        <input type="text" class="form-control" id="birthdayLocation">
+      </div>
+
+      <div class="col-md-4 mb-3">
+        <label class="form-label">نحوه ارجاع</label>
+        <input type="text" class="form-control" id="referral">
+      </div>
+
+      <div class="col-md-4 mb-3">
+        <label class="form-label">نام پدر</label>
+        <input type="text" class="form-control" id="fatherName">
+      </div>
+      
     </div>
 
-    <div class="col-md-4 mb-3">
-      <label class="form-label">وضعیت تاهل</label>
-      <select class="form-select" id="maritalStatus">
-        <option>مجرد</option>
-        <option>متاهل</option>
-      </select>
-    </div>
-  </div>
+    <div class="row">
 
-  <div class="mb-3">
-    <label class="form-label">تحصیلات</label>
-    <input type="text" class="form-control" id="education">
-  </div>
+      <div class="col-md-4 mb-3">
+        <label class="form-label">شغل</label>
+        <input type="text" class="form-control" id="job">
+      </div>
+
+      <div class="col-md-4 mb-3">
+        <label class="form-label">وضعیت تاهل</label>
+        <select class="form-select" id="maritalStatus">
+          <option>مجرد</option>
+          <option>متاهل</option>
+        </select>
+      </div>
+
+      <div class="col-md-4 mb-3">
+        <label class="form-label">تحصیلات</label>
+        <input type="text" class="form-control" id="education">
+      </div>
+      
+    </div>
+
+  </section>
 
   <!-- ADDRESS -->
-  <div class="section-title">آدرس</div>
 
-  <div class="mb-3">
-    <label class="form-label">آدرس منزل</label>
-    <input type="text" class="form-control" id="homeAddress">
-  </div>
+  <section class="pdf-section">
 
-  <div class="mb-3">
-    <label class="form-label">آدرس محل کار</label>
-    <input type="text" class="form-control" id="workAddress">
-  </div>
+    <div class="section-title">آدرس</div>
 
-  <div class="mb-3">
-    <label class="form-label">تلفن</label>
-    <input type="tel" class="form-control" id="phone">
-  </div>
+    <div class="mb-3">
+      <label class="form-label">آدرس منزل</label>
+      <input type="text" class="form-control" id="homeAddress">
+    </div>
 
-  <!-- REASON -->
-  <div class="section-title">علت مراجعه</div>
+    <div class="mb-3">
+      <label class="form-label">آدرس محل کار</label>
+      <input type="text" class="form-control" id="workAddress">
+    </div>
 
-  <div class="mb-3">
-    <label class="form-label">مشکل اصلی</label>
-    <input type="text" class="form-control" id="mainIssue">
-  </div>
+    <div class="mb-3">
+      <label class="form-label">تلفن</label>
+      <input type="tel" class="form-control" id="phone">
+    </div>
+  
+  </section>
+  
+  <section class="pdf-section">
 
-  <div class="mb-3">
-    <label class="form-label">طول مدت</label>
-    <input type="text" class="form-control" id="duration">
-  </div>
+    <!-- REASON -->
+    <div class="section-title">علت مراجعه</div>
 
-  <!-- HISTORY -->
-  <div class="section-title">سابقه درمان و پزشکی</div>
+    <div class="mb-3">
+      <label class="form-label">مشکل اصلی</label>
+      <input type="text" class="form-control" id="mainIssue">
+    </div>
 
-  <div class="mb-3">
-    <label class="form-label">درمان روانشناختی قبلی</label>
-    <textarea class="form-control" id="pastTherapy"></textarea>
-  </div>
+    <div class="mb-3">
+      <label class="form-label">طول مدت</label>
+      <input type="text" class="form-control" id="duration">
+    </div>
 
-  <div class="mb-3">
-    <label class="form-label">داروهای روانپزشکی</label>
-    <textarea class="form-control" id="medications"></textarea>
-  </div>
+  </section>
+  
+  <section class="pdf-section">
 
-  <div class="mb-3">
-    <label class="form-label">بیماری جسمی</label>
-    <textarea class="form-control" id="physicalIllness"></textarea>
-  </div>
+    <!-- HISTORY -->
+    <div class="section-title">سابقه درمان و پزشکی</div>
 
-  <div class="mb-3">
-    <label class="form-label">الگوی خواب</label>
-    <textarea class="form-control" id="sleepPattern"></textarea>
-  </div>
+    <div class="mb-3">
+      <label class="form-label">درمان روانشناختی قبلی</label>
+      <textarea class="form-control" id="pastTherapy"></textarea>
+    </div>
 
-  <div class="mb-3">
-    <label class="form-label">الگوی انرژی</label>
-    <textarea class="form-control" id="energyLevel"></textarea>
-  </div>
+    <div class="mb-3">
+      <label class="form-label">داروهای روانپزشکی</label>
+      <textarea class="form-control" id="medications"></textarea>
+    </div>
 
-  <div class="mb-3">
-    <label class="form-label">الگوی اشتها</label>
-    <textarea class="form-control" id="appetite"></textarea>
-  </div>
+    <div class="mb-3">
+      <label class="form-label">بیماری جسمی</label>
+      <textarea class="form-control" id="physicalIllness"></textarea>
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">الگوی خواب</label>
+      <textarea class="form-control" id="sleepPattern"></textarea>
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">الگوی انرژی</label>
+      <textarea class="form-control" id="energyLevel"></textarea>
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">الگوی اشتها</label>
+      <textarea class="form-control" id="appetite"></textarea>
+    </div>
+
+  </section>
 
   <!-- FAMILY -->
-  <div class="section-title">خانواده و روابط</div>
+  <section class="pdf-section">
+      
+    <div class="section-title">خانواده و روابط</div>
 
-  <div class="mb-3">
-    <label class="form-label">اعضای خانواده اصلی</label>
-    <input type="text" class="form-control" id="familyMain">
-  </div>
-
-  <div class="mb-3">
-    <label class="form-label">فرزند چندم خانواده</label>
-    <input type="text" class="form-control" id="familyPosition">
-  </div>
-
-  <div class="mb-3">
-    <label class="form-label">اعضای خانواده فعلی</label>
-    <input type="text" class="form-control" id="familyCurrent">
-  </div>
-
-  <div class="mb-3">
-    <label class="form-label">رویداد مهم خانوادگی</label>
-    <input type="text" class="form-control" id="familyEvent">
-  </div>
-
-  <div class="mb-3">
-    <label class="form-label">رابطه عاطفی فعلی</label>
-    <input type="text" class="form-control" id="currentRelationship">
-  </div>
-
-  <!-- DRUGS -->
-  <div class="section-title">مصرف مواد</div>
-
-  <div class="row">
-    <div class="col-md-4 mb-3">
-      <label class="form-label">الکل</label>
-      <select class="form-select" id="alcohol">
-        <option>خیر</option>
-        <option>بله</option>
-      </select>
+    <div class="row">
+      <div class="col-md-4 mb-3">
+        <label class="form-label">اعضای خانواده اصلی</label>
+        <input type="text" class="form-control" id="familyMain">
+      </div>
+      <div class="col-md-4 mb-3">
+        <label class="form-label">فرزند چندم خانواده</label>
+        <input type="text" class="form-control" id="familyPosition">
+      </div>
+      <div class="col-md-4 mb-3">
+        <label class="form-label">اعضای خانواده فعلی</label>
+        <input type="text" class="form-control" id="familyCurrent">
+      </div>    
     </div>
 
-    <div class="col-md-4 mb-3">
-      <label class="form-label">سیگار / ویپ</label>
-      <select class="form-select" id="smoking">
-        <option>خیر</option>
-        <option>بله</option>
-      </select>
+    <div class="mb-3">
+      <label class="form-label">رویداد مهم خانوادگی</label>
+      <input type="text" class="form-control" id="familyEvent">
     </div>
 
-    <div class="col-md-4 mb-3">
-      <label class="form-label">مواد مخدر</label>
-      <select class="form-select" id="drugs">
-        <option>خیر</option>
-        <option>بله</option>
-      </select>
+    <div class="mb-3">
+      <label class="form-label">رابطه عاطفی فعلی</label>
+      <input type="text" class="form-control" id="currentRelationship">
     </div>
-  </div>
 
-  <!-- SAFETY -->
-  <div class="section-title">وضعیت ایمنی و سلامت روان</div>
+    <!-- FAMILY -->
+    <div class="section-title">مشخصات اعضای خانواده</div>
 
-  <div class="mb-3">
-    <label class="form-label">افکار ناراحت کننده با فشارهای شدید ذهنی</label>
-    <input type="text" class="form-control" id="stressThoughts">
-  </div>
+    <div class="table-responsive">
+      <table class="table table-bordered family-table" id="familyTable">
+        <thead>
+          <tr>
+            <th>نسبت با مراجع</th>
+            <th>سن</th>
+            <th>تحصیلات</th>
+            <th>شغل</th>
+            <th>بیماری</th>
+            <th>حذف</th>
+          </tr>
+        </thead>
 
-  <div class="mb-3">
-    <label class="form-label">تجربه ناامیدی یا درماندگی</label>
-    <input type="text" class="form-control" id="desperateExperince">
-  </div>
+        <tbody id="familyTableBody">
+          <tr>
+            <td><input type="text" class="form-control family-relation"></td>
+            <td><input type="number" class="form-control family-age"></td>
+            <td><input type="text" class="form-control family-education"></td>
+            <td><input type="text" class="form-control family-job"></td>
+            <td><input type="text" class="form-control family-illness"></td>
 
-  <div class="mb-3">
-    <label class="form-label">رفتارهای آسیب زننده به خود</label>
-    <input type="text" class="form-control" id="harmselfActs">
-  </div>
+            <td><button type="button" class="btn btn-danger btn-sm btn-remove" onclick="removeFamilyRow(this)">×</button></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
 
-  <div class="mb-3">
-    <label class="form-label">رفتار پرخطر</label>
-    <input type="text" class="form-control" id="highriskActs">
-  </div> 
+    <template id="familyRowTemplate">
+        <tr>
+            <td><input type="text" class="form-control family-relation"></td>
+            <td><input type="number" class="form-control family-age"></td>
+            <td><input type="text" class="form-control family-education"></td>
+            <td><input type="text" class="form-control family-job"></td>
+            <td><input type="text" class="form-control family-illness"></td>
+            <td>
+                <button type="button"
+                        class="btn btn-danger btn-sm btn-remove"
+                        onclick="removeFamilyRow(this)">
+                    ×
+                </button>
+            </td>
+        </tr>
+    </template>
 
-  <!-- AGREEMENT -->
-  <div class="section-title">تعهدات مراجع</div>
+    <button type="button" class="btn btn-outline-primary btn-sm mt-2" onclick="addFamilyRow()"> + افزودن عضو خانواده</button>
 
-  <p class="small-note">
-    حضور به موقع در جلسات و اطلاع حداقل 24 ساعت قبل در صورت لغو، هزینه جلسه به صورت کامل دریافت می شود.
-    <br>
-    ارائه اطلاعات دقیق درباره وضعیت روانی و پزشکی
-    <br> 
-    رعایت احترام و چارچوب حرفه ای در جلسات
-    <br>
-    اطلاع دادن در صورت تجربه فشار روانی شدید یا رفتارهای آسیب زننده
-    <br>
-    اطلاعات فقط در چارچوب درمان محرمانه است و جز در موارد قانونی خطر جدی برای خود یا دیگران افشا نمی شود.
-  </p>
+  </section>
 
-  <!-- AGREEMENT -->
-  <div class="section-title">محرمانگی</div>
-
-  <p class="small-note">
-    اطلاعات فقط در چارچوب درمان محرمانه است و جز در موارد قانونی خطر جدی برای خود یا دیگران افشا نمی شود.
-  </p>
   
-  <!-- SIGNATURE -->
-  <div class="mb-3">
-    <label class="form-label">امضا</label>
+  <!-- DRUGS -->
+  <section class="pdf-section">
+
+    <div class="section-title">مصرف مواد</div>
+
+    <div class="row">
+      <div class="col-md-4 mb-3">
+        <label class="form-label">الکل</label>
+        <select class="form-select" id="alcohol">
+          <option>خیر</option>
+          <option>بله</option>
+        </select>
+      </div>
+
+      <div class="col-md-4 mb-3">
+        <label class="form-label">سیگار / ویپ</label>
+        <select class="form-select" id="smoking">
+          <option>خیر</option>
+          <option>بله</option>
+        </select>
+      </div>
+
+      <div class="col-md-4 mb-3">
+        <label class="form-label">مواد مخدر</label>
+        <select class="form-select" id="drugs">
+          <option>خیر</option>
+          <option>بله</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- SAFETY -->
+    <div class="section-title">وضعیت ایمنی و سلامت روان</div>
+
+    <div class="mb-3">
+      <label class="form-label">افکار ناراحت کننده با فشارهای شدید ذهنی</label>
+      <input type="text" class="form-control" id="stressThoughts">
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">تجربه ناامیدی یا درماندگی</label>
+      <input type="text" class="form-control" id="desperateExperince">
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">رفتارهای آسیب زننده به خود</label>
+      <input type="text" class="form-control" id="harmselfActs">
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">رفتار پرخطر</label>
+      <input type="text" class="form-control" id="highriskActs">
+    </div>
+
+  </section>
+
+  
+  <!-- AGREEMENT -->
+  <section class="pdf-section">
+
+    <div class="section-title">تعهدات مراجع</div>
+
+    <!-- AGREEMENT -->
+    <div class="section-title">توافق‌نامه درمانی و تعهدات مراجع</div>
+
+    <div class="agreement-text small-note">
+
+      <p>
+        اینجانب
+        <span class="agreement-field" id="agreementFullName">....................</span>
+        فرزند
+        <span class="agreement-field" id="agreementFatherName">....................</span>
+        با کد ملی
+        <span class="agreement-field" id="agreementNationalId">....................</span>
+        صادره از
+        <span class="agreement-field" id="agreementIssuedFrom">....................</span>
+        با آگاهی کامل از قواعد مشاوره و درمان، با خانم بهاره حکیمی،
+        درمانگر خود، توافق می‌نمایم که در چارچوب حرفه‌ای و مطابق اصول حرفه‌ای
+        و ضوابط مربوط، اقدامات درمانی مورد تأیید درمانگر برای مشاوره و درمان
+        انجام شود.
+      </p>
+
+      <p>همچنین تهعد می دهم:</p>
+
+      <ol>
+        <li>
+          سر ساعت تعیین‌شده در جلسه حضور داشته باشم و هزینه جلسه از زمان تعیین‌شده محاسبه می‌شود.
+        </li>
+
+        <li>
+          در صورت لغو جلسه، حداقل ۲۴ ساعت قبل اطلاع دهم؛ در غیر این صورت هزینه جلسه به صورت کامل دریافت می‌شود.
+        </li>
+
+        <li>
+        هزینه جلسات هیپنوتیزم و EMDR متفاوت می‌باشد.
+        </li>
+
+        <li>
+          اطلاعات دقیق درباره وضعیت روانی و پزشکی خود ارائه دهم و احترام و چارچوب حرفه‌ای جلسات را رعایت کنم.
+        </li>
+        <li>
+          در صورت تجربه فشار روانی شدید یا رفتارهای آسیب‌زننده، موضوع را به درمانگر اطلاع دهم.
+        </li>
+
+      </ol>
+
+    </div>
+
+
+    <!-- AGREEMENT -->
+    <div class="section-title">محرمانگی</div>
+
     <p class="small-note">
-      با امضا مراجع تایید می‌کند که موارد بالا را خوانده و پذیرفته است.
+      اطلاعات فقط در چارچوب درمان محرمانه است و جز در موارد قانونی خطر جدی برای خود یا دیگران افشا نمی شود.
     </p>
-    <canvas id="signaturePad"></canvas>
-    <div id="pdfPatientName"></div>
-    <button type="button" class="btn btn-secondary btn-sm mt-2" onclick="clearSignature()">
-      پاک کردن امضا
-    </button>
-  </div>
+    
+    <!-- SIGNATURE -->
+    <div class="mb-3">
+      <label class="form-label">امضا</label>
+      <p class="small-note">
+        با امضا مراجع تایید می‌کند که موارد بالا را خوانده و پذیرفته است.
+      </p>
+      <canvas id="signaturePad"></canvas>
+      <div id="pdfPatientName"></div>
+      <button type="button" class="btn btn-secondary btn-sm mt-2" onclick="clearSignature()">
+        پاک کردن امضا
+      </button>
+    </div>
 
-  <!-- SUBMIT -->
-  <div class="text-center mt-4">
-    <button class="btn btn-primary px-5" id="submitBtn" onclick="submitForm()">
-      ثبت و دانلود فرم
-    </button>
-    <!-- <button class="btn btn-primary px-5" id="downloadPdfBtn" onclick="downloadPDF()">
-      دانلود PDF
-    </button> -->
+    <!-- SUBMIT -->
+    <div class="text-center mt-4">
+      <button class="btn btn-primary px-5" id="submitBtn" onclick="submitForm()">
+        ثبت و دانلود فرم
+      </button>
+    </div>
+
+    <!-- TEST -->
+    <div class="text-center mt-4 d-flex gap-3 justify-content-center debug-show">
+
+        <button class="btn btn-primary px-5" onclick="fillTestData()">
+            پر کردن دیتا تست
+        </button>
+
+        <button class="btn btn-primary px-5" onclick="downloadPDF()">
+            دانلود پی دی اف تست
+        </button>
+
+    </div>
+
+  </section>
+
 </div>
-  </div>
 
-  <div id="loadingOverlay" class="loading-overlay hidden">
-    <div class="loader"></div>
-    <p>در حال ثبت اطلاعات...</p>
-  </div>
-
+<div id="loadingOverlay" class="loading-overlay hidden">
+  <div class="loader"></div>
+  <p>در حال ثبت اطلاعات...</p>
 </div>
 
 </body>
