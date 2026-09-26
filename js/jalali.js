@@ -20,3 +20,24 @@ function getJalaliDateYearsAgo(years) {
 
     return date;
 }
+
+function calculateAge(birthDate) {
+    if (!birthDate) return "";
+
+    const [birthYear, birthMonth, birthDay] = birthDate.split("/").map(Number);
+
+    const today = getTodayJalali().replace(/\./g, "/");
+    const [currentYear, currentMonth, currentDay] = today.split("/").map(Number);
+
+    let age = currentYear - birthYear;
+
+    // Birthday hasn't happened yet this year
+    if (
+        currentMonth < birthMonth ||
+        (currentMonth === birthMonth && currentDay < birthDay)
+    ) {
+        age--;
+    }
+
+    return age;
+}

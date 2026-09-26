@@ -39,7 +39,7 @@ window.addEventListener("DOMContentLoaded", () => {
 
         return {
             // Basic information
-            caseNumber: document.getElementById("caseNumber").value,
+            // caseNumber: document.getElementById("caseNumber").value,
             visitDate: (document.getElementById("visitDate").value || "").replaceAll("/", "."),
             nationalCode: document.getElementById("nationalCode").value,
             fullName: document.getElementById("fullName").value,
@@ -137,8 +137,23 @@ window.addEventListener("DOMContentLoaded", () => {
             return false;
         }
 
+        if (!data.job) {
+            showNotification("لطفاً شغل را وارد کنید", "error");
+            return false;
+        }
+
+        if (!data.education) {
+            showNotification("لطفاً تحصیلات را وارد کنید", "error");
+            return false;
+        }
+
         if (!data.phone) {
             showNotification("لطفاً شماره تلفن را وارد کنید", "error");
+            return false;
+        }
+
+        if (!data.mainIssue) {
+            showNotification("لطفاً علت مراجعه را وارد کنید", "error");
             return false;
         }
 
@@ -164,8 +179,17 @@ window.addEventListener("DOMContentLoaded", () => {
     window.updateAgreementFields = updateAgreementFields;
     
 
+    // date fields
     document.getElementById("visitDate").value = getTodayJalali();
     document.getElementById("birthDate").value = getJalaliDateYearsAgo(30);
+
+    const birthDateInput = document.getElementById("birthDate");
+    const ageInput = document.getElementById("age");
+
+    birthDateInput.addEventListener("input", function () {
+        ageInput.value = calculateAge(this.value);
+    });
+
     
     jalaliDatepicker.startWatch({
         separator: "/"
