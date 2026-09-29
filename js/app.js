@@ -256,7 +256,7 @@ window.addEventListener("DOMContentLoaded", () => {
             if (result.success) {
                 window.location.href = result.url;
                 console.log(result.url);
-                showNotification(" فرم با موفقیت آپلود شد.", "success", true);
+                showNotification(" در حال دانلود فرم ...", "success", true);
             } else {
                 showNotification("خطا ثبت فرم", "error");
             }
