@@ -1,7 +1,7 @@
 
 // config.js
 const CONFIG = {
-    WEB_APP_URL: "https://script.google.com/macros/s/AKfycbyArz6L0FDeRjgbn_z0jk5WrlNiQ8m3Tgz2OLo0Jb2SbjH1WA8ULCzNL6EohMHqM_OSxg/exec",
-    VERSION: "2.4",
+    WEB_APP_URL: "https://script.google.com/macros/s/AKfycbzTIn_lBQ_npf2caeMiCGaE2C2_cMot5NHJs7f3ZhVRz3kMD3SMZGag7VNWdsq1D5s/exec",
+    VERSION: "3.4",
     DEBUG: false
 };

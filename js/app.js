@@ -169,7 +169,8 @@ window.addEventListener("DOMContentLoaded", () => {
     // expose functions to HTML
     window.clearSignature = clearSignature;
     
-     window.submitForm = submitPdfInDriveDownload;
+    //  window.submitForm = submitPdfInDriveDownload;
+     window.submitForm = submitPdfToTelegram;
     
     window.addFamilyRow = addFamilyRow;
     window.removeFamilyRow = removeFamilyRow;
@@ -213,10 +214,10 @@ window.addEventListener("DOMContentLoaded", () => {
         const nationalCode = document.getElementById("nationalCode").value;
         const issuedFrom = document.getElementById("birthdayLocation").value;
 
-        document.getElementById("agreementFullName").textContent = toPersianDigits(fullName) || "....................";
-        document.getElementById("agreementFatherName").textContent = toPersianDigits(fatherName) || "....................";
-        document.getElementById("agreementNationalId").textContent = toPersianDigits(nationalCode) || "....................";
-        document.getElementById("agreementIssuedFrom").textContent = toPersianDigits(issuedFrom) || "....................";
+        document.getElementById("agreementFullName").textContent = fullName || "....................";
+        document.getElementById("agreementFatherName").textContent = fatherName || "....................";
+        document.getElementById("agreementNationalId").textContent = nationalCode || "....................";
+        document.getElementById("agreementIssuedFrom").textContent = issuedFrom || "....................";
     }
 
     document.getElementById("fullName").addEventListener("input", updateAgreementFields);
@@ -244,6 +245,8 @@ window.addEventListener("DOMContentLoaded", () => {
             const formData = new FormData();
 
             formData.append("filename", opt.filename);
+            formData.append("caption", opt.caption);
+            
             formData.append("pdf", base64);
 
             const response = await fetch(WEB_APP_URL,{
@@ -318,22 +321,96 @@ window.addEventListener("DOMContentLoaded", () => {
         }
     }
 
+    // Submit PDF to Telegram
+    async function submitPdfToTelegram() {
+
+        const data = getFormData();
+        if (!validateForm(data)) return;
+
+        showLoading();
+
+        try {
+
+            const { pdf, opt } = await generatePDF();
+            // Convert PDF to Blob
+            const blob = pdf.output("blob");
+            // Convert Blob to Base64
+            const base64 = await blobToBase64(blob);
+            const formData = new FormData();
+
+            formData.append("filename", opt.filename);
+            formData.append("caption", opt.caption);
+
+            formData.append("pdf", base64);
+            
+
+            const response = await fetch(CONFIG.WEB_APP_URL, {
+                method: "POST",
+                body: formData
+            });
+
+            const result = await response.json();
+            console.log("Telegram result:", result);
+
+            if (result.success) {
+                showNotification("فرم با موفقیت به تلگرام ارسال شد.", "success", true);
+            } else {
+                console.error(result.error);
+                showNotification("خطا در ارسال فرم به تلگرام", "error" );
+            }
+
+        } catch (err) {
+            console.error("Telegram upload error:", err);
+            showNotification("خطا در اتصال", "error");
+
+        } finally {
+            changeBackInputsToNormall();
+            document.body.classList.remove("pdf-mode");
+            document.getElementById("pdfPatientName").style.display = "none";
+            hideLoading();
+        }
+    }
+
+
     async function generatePDF() {
+    
+        const pdfName = document.getElementById("pdfPatientName");
+        pdfName.textContent = document.getElementById("fullName").value;
+        pdfName.style.display = "block";
+
+        // convert textareas to text
+        document.body.classList.add("pdf-mode");
+       
+        changeAllInputsToText();
+
+        // pdf
+
         const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) || (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
 
         const element = document.querySelector(".form-container");
         const fullName = document.getElementById("fullName").value.trim() || "";
         const date = document.getElementById("visitDate").value.replace(/\//g, "-");
 
+        
+        // persian digits
+        convertNumbersToPersian(element);
+
+        // const canvas = await html2canvas(element, {
+        //     scale: 1,
+        //     useCORS: true,
+        //     allowTaint: true
+        // });
+
         const opt = {
             margin: [0.1, 0.1, 0.1, 0.1],
-            filename: `فرم توافق نامه درمانی - ${fullName} - ${date}.pdf`,
+            caption: "فرم توافق نامه درمانی" + "_" + fullName  + "_" + date,
+            filename: "form-" + date + ".pdf",
             image: {
                 type: "jpeg",
-                quality: 1
+                quality: 0.75
             },
             html2canvas: {
-                scale: isIOS ? 1 : 2,
+                scale: 1,
                 useCORS: true,
                 allowTaint: true,
                 logging: true
@@ -349,13 +426,6 @@ window.addEventListener("DOMContentLoaded", () => {
         };
 
 
-        const pdfName = document.getElementById("pdfPatientName");
-        pdfName.textContent = document.getElementById("fullName").value;
-        pdfName.style.display = "block";
-
-        // convert textareas to text
-        document.body.classList.add("pdf-mode");
-        changeAllInputsToText();
 
         const worker = html2pdf().set(opt).from(element);
         const pdf = await worker.toPdf().get("pdf");
@@ -381,7 +451,7 @@ window.addEventListener("DOMContentLoaded", () => {
             const p = document.createElement("p");
 
             p.className = "pdf-field";
-            p.textContent = toPersianDigits(el.value);
+            p.textContent = el.value;
             p.dataset.pdfTemp = "true";
 
             // Copy important classes
@@ -430,6 +500,42 @@ window.addEventListener("DOMContentLoaded", () => {
                 delete el.dataset.originalDisplay;
             }
         });
+    }
+
+    function convertNumbersToPersian(element) {
+        const toPersian = text =>
+            text.replace(/[0-9]/g, d => "۰۱۲۳۴۵۶۷۸۹"[d]);
+
+        // Number inputs
+        element.querySelectorAll('input[type="number"]').forEach(el => {
+            const value = el.value;
+
+            if (value) {
+                el.type = "text";
+                el.setAttribute("value", toPersian(value));
+                el.value = toPersian(value);
+            }
+        });
+
+        // Other inputs + textareas
+        element.querySelectorAll('input:not([type="number"]), textarea').forEach(el => {
+            if (el.value) {
+                const value = toPersian(el.value);
+                el.setAttribute("value", value);
+                el.value = value;
+            }
+        });
+
+        // Normal text such as <span>123</span>
+        const walker = document.createTreeWalker(
+            element,
+            NodeFilter.SHOW_TEXT
+        );
+
+        while (walker.nextNode()) {
+            walker.currentNode.nodeValue =
+                toPersian(walker.currentNode.nodeValue);
+        }
     }
 
 

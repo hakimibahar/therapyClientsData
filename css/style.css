@@ -91,6 +91,49 @@ body {
     padding: 0;
 }
 
+html,
+body {
+    width: 100%;
+    max-width: 100%;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+}
+
+body {
+    min-height: 100vh;
+}
+
+body.pdf-mode,
+body.pdf-mode * {
+    background: white !important;
+    box-shadow: none !important;
+}
+
+.form-container {
+    width: 100%;
+    max-width: 900px;
+    margin-left: auto;
+    margin-right: auto;
+    box-sizing: border-box;
+}
+
+@media (max-width: 768px) {
+    .form-container {
+        width: 100%;
+        max-width: 100%;
+        margin: 0;
+        padding-left: 12px;
+        padding-right: 12px;
+    }
+}
+
+.pdf-mode .form-container {
+    width: 100%;
+    max-width: 900px;
+    box-sizing: border-box;
+}
+
 
 /* =========================================================
    MAIN FORM
@@ -153,6 +196,37 @@ canvas {
     border-radius: 8px;
     width: 100%;
     height: 180px;
+}
+
+
+.signature-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+}
+
+#signaturePad {
+    display: block;
+    width: 100%;
+    height: 180px;
+    background: white;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    touch-action: none;
+}
+
+.pdf-signature {
+    display: block;
+
+    width: 220px;
+    height: 80px;
+
+    object-fit: contain;
+    object-position: center;
+
+    margin: 0 auto;
 }
 
 
@@ -547,6 +621,8 @@ canvas {
     margin-top: 10px;
     margin-right: 15px;
     font-weight: bold;
+    z-index: 5;
+    position: absolute;
 }
 
 .pdf-mode .form-container #pdfPatientName {

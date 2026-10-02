@@ -30,4 +30,5 @@ window.addEventListener("DOMContentLoaded", () => {
     window.getSignature = getSignature;
     window.signaturePad = signaturePad;
 
+
 });

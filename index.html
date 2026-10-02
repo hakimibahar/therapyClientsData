@@ -72,7 +72,8 @@
       
       <div class="col-md-4 mb-3">
         <label class="form-label">کدملی</label>
-        <input type="number" class="form-control" id="nationalCode">
+          <input type="number" class="form-control" id="nationalCode">
+          <!-- <input type="text" class="form-control" id="nationalCode" inputmode="numeric" autocomplete="off"> -->
       </div>
 
     </div>
@@ -413,22 +414,24 @@
     </p>
     
     <!-- SIGNATURE -->
-    <div class="mb-3">
+    <div class="mb-5">
       <label class="form-label">امضا</label>
       <p class="small-note">
         با امضا مراجع تایید می‌کند که موارد بالا را خوانده و پذیرفته است.
       </p>
-      <canvas id="signaturePad"></canvas>
+      <div class="signature-container">
+        <canvas id="signaturePad"></canvas>
+      </div>
       <div id="pdfPatientName"></div>
-      <button type="button" class="btn btn-secondary btn-sm mt-2" onclick="clearSignature()">
+      <button type="button" class="btn btn-secondary btn-sm mt-2 mb-5" onclick="clearSignature()">
         پاک کردن امضا
       </button>
     </div>
 
     <!-- SUBMIT -->
-    <div class="text-center mt-4">
-      <button class="btn btn-primary px-5" id="submitBtn" onclick="submitForm()">
-        ثبت و دانلود فرم
+    <div class="text-center mt-4 mb-5">
+      <button class="btn btn-primary px-5 mb-5" id="submitBtn" onclick="submitForm()">
+        ارسال فرم 
       </button>
     </div>
 
