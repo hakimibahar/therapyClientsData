@@ -1,6 +1,5 @@
 window.addEventListener("DOMContentLoaded", () => {
 
-    const WEB_APP_URL = CONFIG.WEB_APP_URL;
     const DEBUG = CONFIG.DEBUG;
 
     
@@ -28,7 +27,7 @@ window.addEventListener("DOMContentLoaded", () => {
             input.value = textlong;
         });
 
-        document.getElementById("fullName").value = "محمد محسن ریحانی";
+        document.getElementById("fullName").value = "تست";
         document.getElementById("fatherName").value = "حسین";
         document.getElementById("nationalCode").value = "1234567890";
         document.getElementById("birthdayLocation").value = "تهران";
@@ -44,7 +43,7 @@ window.addEventListener("DOMContentLoaded", () => {
                 relation: "پدر",
                 age: "58",
                 education: "کارشناسی ارشد",
-                job: "مدیر شرکت با سابقه کاری بسیار طولانی",
+                job: "مدیر شرکت",
                 illness: "فشار خون بالا، دیابت و مشکلات قلبی"
             },
             {

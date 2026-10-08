@@ -1,3 +1,5 @@
+// js/notification.js
+
 function showNotification(message, type = "info", dontRemove = false) {
     const notif = document.createElement("div");
     notif.textContent = message;
