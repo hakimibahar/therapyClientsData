@@ -218,7 +218,7 @@ function buildSheetPayload(data) {
         { header: "سن", value: data.age || "" },
         { header: "محل تولد", value: data.birthdayLocation || "" },
         { header: "نام پدر", value: data.fatherName || "" },
-        { header: "نحوه ارجاع", value: data.referral || "" },
+        { header: "معرف", value: data.referral || "" },
         { header: "شغل", value: data.job || "" },
         { header: "وضعیت تاهل", value: data.maritalStatus || "" },
         { header: "تحصیلات", value: data.education || "" },
@@ -273,7 +273,7 @@ function buildTelegramTextMessage(data) {
 ▫️ شغل: ${data.job}
 ▫️ تحصیلات: ${data.education}
 ▫️ وضعیت تاهل: ${data.maritalStatus}
-▫️ نحوه ارجاع: ${data.referral}
+▫️ معرف: ${data.referral}
 
 📞 اطلاعات تماس:
 ▫️ تلفن: ${data.phone}
