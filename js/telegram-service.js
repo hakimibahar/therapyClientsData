@@ -10,12 +10,14 @@ async function submitPdfToTelegram() {
     const blob = pdf.output("blob");
     // Convert Blob to Base64
     const base64 = await blobToBase64(blob);
-    const formData = new FormData();
+    // Get Telegram Message in Formatted Text
+    const messageText = buildTelegramTextMessage(data);
 
+    const formData = new FormData();
     formData.append("filename", opt.filename);
     formData.append("caption", opt.caption);
-
     formData.append("pdf", base64);
+    formData.append("message", messageText);
     
 
     const response = await fetch(CONFIG.WEB_APP_URL_TELEGRAM, {

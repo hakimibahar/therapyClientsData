@@ -128,8 +128,7 @@ window.addEventListener("DOMContentLoaded", () => {
     });
 
     // SUBMIT FORM
-    // send telegram pdf
-    // send data to google sheet
+    // send telegram pdf and message
     async function submitForm() {
         const data = getFormData();
 
@@ -138,28 +137,24 @@ window.addEventListener("DOMContentLoaded", () => {
         showLoading();
 
         try {
-            const sheetResult = await sendDataToGoogleSheet(data);
+            const result = await submitPdfToTelegram(data);
 
-            if (!sheetResult.success) {
-                console.error("Google Sheet failed:", sheetResult.error);
+            if (result && result.success) {
+                showNotification("فرم و فایل PDF با موفقیت ارسال شد.", "success");
+            } else {
+                throw new Error(result?.error || "خطا در پاسخ سرور");
             }
 
-            await submitPdfToTelegram();
-
-            
         } catch (error) {
-            showNotification("خطا در ارسال", "error");
             console.error("Submit error:", error);
-            
+            showNotification("خطا در ارسال اطلاعات به تلگرام", "error");
         } finally {
-            showNotification("فرم با موفقیت ارسال شد.", "success");
             changeBackInputsToNormall();
             document.body.classList.remove("pdf-mode");
             document.getElementById("pdfPatientName").style.display = "none";
             hideLoading();
         }
     }
-
     window.submitForm = submitForm;
 
 

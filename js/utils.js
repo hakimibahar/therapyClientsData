@@ -255,6 +255,57 @@ function buildSheetPayload(data) {
 }
 
 
+function buildTelegramTextMessage(data) {
+    const registerDate = typeof getTodayJalali === "function" ? getTodayJalali() : "";
+    const familyMembersText = formatFamilyMembers(data.familyMembers);
+
+    return `📋 فرم توافق‌نامه درمانی جدید
+
+📅 تاریخ ثبت: ${registerDate}
+📅 تاریخ مراجعه: ${data.visitDate}
+
+👤 اطلاعات پایه:
+▫️ نام و نام خانوادگی: ${data.fullName}
+▫️ کدملی: ${data.nationalCode}
+▫️ تاریخ تولد: ${data.birthDate} (سن: ${data.age})
+▫️ محل تولد: ${data.birthdayLocation}
+▫️ نام پدر: ${data.fatherName}
+▫️ شغل: ${data.job}
+▫️ تحصیلات: ${data.education}
+▫️ وضعیت تاهل: ${data.maritalStatus}
+▫️ نحوه ارجاع: ${data.referral}
+
+📞 اطلاعات تماس:
+▫️ تلفن: ${data.phone}
+▫️ آدرس منزل: ${data.homeAddress}
+▫️ آدرس محل کار: ${data.workAddress}
+
+🩺 علت مراجعه و سوابق:
+▫️ مشکل اصلی: ${data.mainIssue}
+▫️ طول مدت: ${data.duration}
+▫️ درمان روانشناختی قبلی: ${data.pastTherapy}
+▫️ داروهای روانپزشکی: ${data.medications}
+▫️ بیماری جسمی: ${data.physicalIllness}
+▫️ خواب: ${data.sleepPattern} | انرژی: ${data.energyLevel} | اشتها: ${data.appetite}
+
+👨‍👩‍👧‍👦 خانواده و روابط:
+▫️ خانواده اصلی: ${data.familyMain}
+▫️ فرزند چندم: ${data.familyPosition}
+▫️ خانواده فعلی: ${data.familyCurrent}
+▫️ رویداد مهم: ${data.familyEvent}
+▫️ رابطه عاطفی: ${data.currentRelationship}
+▫️ اعضای خانواده:
+${familyMembersText || "— ثبت نشده —"}
+
+⚠️ مصرف مواد و ایمنی:
+▫️ الکل: ${data.alcohol} | سیگار/ویپ: ${data.smoking} | مواد مخدر: ${data.drugs}
+▫️ افکار ناراحت‌کننده/استرس: ${data.stressThoughts}
+▫️ تجربه ناامیدی: ${data.desperateExperince}
+▫️ آسیب به خود: ${data.harmselfActs}
+▫️ رفتار پرخطر: ${data.highriskActs}`;
+}
+
+
 function formatFamilyMembers(members) {
     if (!members || !members.length) return "";
 

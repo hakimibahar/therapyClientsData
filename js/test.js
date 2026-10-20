@@ -1,3 +1,5 @@
+// test.js
+
 window.addEventListener("DOMContentLoaded", () => {
 
     const DEBUG = CONFIG.DEBUG;
@@ -18,6 +20,7 @@ window.addEventListener("DOMContentLoaded", () => {
         const inputs = document.querySelectorAll("input");
 
         const textlong = "این یک متن بسیار طولانی برای تست PDF است که باید زمانی که به انتهای عرض فیلد رسید به خط بعد منتقل شود و نباید به صورت افقی مخفی یا اسکرول شود.";
+        const textMin = "این یک متن کوتاه برای تست PDF است.";
 
         textareas.forEach((textarea, index) => {
             textarea.value = textlong;
